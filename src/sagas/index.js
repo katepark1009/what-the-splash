@@ -1,4 +1,10 @@
+import { all } from 'redux-saga/effects'
+
+//all promise all이랑 비슷함
+
+
 import imagesSaga from './imagesSaga'
+import statsSaga from './statsSaga'
 
 // worker saga
 // function* handleImagesLoad() {
@@ -15,8 +21,12 @@ import imagesSaga from './imagesSaga'
 //   ? take(IMAGES.LOAD) 
 //   ? call(handleImagesLoad) - https://redux-saga.js.org/docs/Glossary.html
 // }
-
+export default function* rootSaga() {
+  yield all([
+    imagesSaga(),
+    statsSaga()
+  ])
+}
 
 //! watcher saga -> actions -> worker saga
 //! blocking & non-blocking event
-export default rootSaga
